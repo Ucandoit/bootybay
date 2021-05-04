@@ -1,0 +1,16 @@
+{
+  "name": "bootybay",
+  "version": "0.0.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "typescript": "^4.2.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
