@@ -1,4 +1,15 @@
 {
   "name": "@bootybay-tools/tsm-data-collector",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "private": true,
+  "description": "Collects auction data from tsm server",
+  "scripts": {
+    "build": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
 }

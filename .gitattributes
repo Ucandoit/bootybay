@@ -1,1 +1,4 @@
 /.yarn/** linguist-vendored
+
+*.js eol=lf
+*.ts eol=lf

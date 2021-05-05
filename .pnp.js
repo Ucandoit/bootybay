@@ -21,11 +21,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "bootybay",
         "reference": "workspace:."
+      },
+      {
+        "name": "@bootybay-tools/tsm-data-collector",
+        "reference": "workspace:packages/tools/tsm-data-collector"
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$)",
     "fallbackExclusionList": [
+      ["@bootybay-tools/tsm-data-collector", ["workspace:packages/tools/tsm-data-collector"]],
       ["bootybay", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -72,6 +77,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-tokens", "npm:4.0.0"]
           ],
           "linkType": "HARD",
+        }]
+      ]],
+      ["@bootybay-tools/tsm-data-collector", [
+        ["workspace:packages/tools/tsm-data-collector", {
+          "packageLocation": "./packages/tools/tsm-data-collector/",
+          "packageDependencies": [
+            ["@bootybay-tools/tsm-data-collector", "workspace:packages/tools/tsm-data-collector"],
+            ["axios", "npm:0.21.1"],
+            ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
+          ],
+          "linkType": "SOFT",
         }]
       ]],
       ["@commitlint/execute-rule", [
@@ -224,6 +240,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/atob-npm-2.1.2-bcb583261e-597c0d1a74.zip/node_modules/atob/",
           "packageDependencies": [
             ["atob", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["axios", [
+        ["npm:0.21.1", {
+          "packageLocation": "./.yarn/cache/axios-npm-0.21.1-d192f6b3b3-864fb7b5d0.zip/node_modules/axios/",
+          "packageDependencies": [
+            ["axios", "npm:0.21.1"],
+            ["follow-redirects", "virtual:d192f6b3b31cd5d11a443145a3883a70c04cbd7c813c53085dbaf50263735f1162f10fdbddd53c24e162ec3bc37b90966413084323739b7cf942b8bfb4da8831#npm:1.14.0"]
           ],
           "linkType": "HARD",
         }]
@@ -769,6 +795,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-glob", "npm:4.0.1"],
             ["micromatch", "npm:3.1.10"],
             ["resolve-dir", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["follow-redirects", [
+        ["npm:1.14.0", {
+          "packageLocation": "./.yarn/cache/follow-redirects-npm-1.14.0-e2eedd8a6d-70c86697f2.zip/node_modules/follow-redirects/",
+          "packageDependencies": [
+            ["follow-redirects", "npm:1.14.0"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:d192f6b3b31cd5d11a443145a3883a70c04cbd7c813c53085dbaf50263735f1162f10fdbddd53c24e162ec3bc37b90966413084323739b7cf942b8bfb4da8831#npm:1.14.0", {
+          "packageLocation": "./.yarn/$$virtual/follow-redirects-virtual-321df6f063/0/cache/follow-redirects-npm-1.14.0-e2eedd8a6d-70c86697f2.zip/node_modules/follow-redirects/",
+          "packageDependencies": [
+            ["follow-redirects", "virtual:d192f6b3b31cd5d11a443145a3883a70c04cbd7c813c53085dbaf50263735f1162f10fdbddd53c24e162ec3bc37b90966413084323739b7cf942b8bfb4da8831#npm:1.14.0"],
+            ["debug", null]
+          ],
+          "packagePeers": [
+            "debug"
           ],
           "linkType": "HARD",
         }]
