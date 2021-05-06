@@ -9,4 +9,6 @@
 #/.pnp.*
 
 lib
+node_modules
 
+application-dev.yml
