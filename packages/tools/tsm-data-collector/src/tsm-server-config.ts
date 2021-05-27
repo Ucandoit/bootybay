@@ -10,4 +10,5 @@ export interface TsmServerConfig {
   metadata: {
     version: string;
   };
+  url: string;
 }
