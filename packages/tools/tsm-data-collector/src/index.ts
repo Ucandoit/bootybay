@@ -1,6 +1,6 @@
 import { configure, getLogger } from 'log4js';
 import { scheduleJob } from 'node-schedule';
-import { downloadFile } from './file-downloader';
+import downloadFile from './file-downloader';
 import TsmServer from './tsm-server';
 
 configure({
@@ -13,7 +13,7 @@ configure({
 
 const logger = getLogger('tsm-data-collector');
 const tsmServer = new TsmServer();
-const lastModified: any = {};
+const lastModified: { [key: string]: number } = {};
 const job = () => {
   tsmServer
     .getStatus()

@@ -3,13 +3,14 @@ import { readFileSync } from 'fs';
 import { load } from 'js-yaml';
 import { getLogger } from 'log4js';
 import { format } from 'util';
-import { encrypt } from './encrypt';
+import encrypt from './encrypt';
 import { LoginResponse } from './login-response';
 import { StatusResponse } from './status-response';
 import { TsmServerConfig } from './tsm-server-config';
 
 export default class TsmServer {
   private logger = getLogger(TsmServer.name);
+
   private tsmConfig: TsmServerConfig;
 
   constructor() {

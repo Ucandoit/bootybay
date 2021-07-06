@@ -3,7 +3,7 @@ import { createWriteStream } from 'fs';
 import { finished } from 'stream';
 import { promisify } from 'util';
 
-export function downloadFile(fileUrl: string, outputLocationPath: string): Promise<any> {
+export default function downloadFile(fileUrl: string, outputLocationPath: string): Promise<void> {
   const finishedPromise = promisify(finished);
   const writer = createWriteStream(outputLocationPath);
   return axios

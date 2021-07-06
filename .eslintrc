@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "airbnb-typescript/base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  // see https://github.com/iamturns/eslint-config-airbnb-typescript#4-configure-the-eslint-typescript-parser
+  "parserOptions": {
+    "project": "./packages/**/tsconfig.build.json",
+    "sourceType": "module"
+  }
+}

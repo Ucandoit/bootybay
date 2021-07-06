@@ -7,6 +7,6 @@ import { createHash, Encoding } from 'crypto';
  * @param encoding the encoding of the text (utf-8 by default)
  * @returns the encoded string in hex format
  */
-export function encrypt(text: string, algorithm = 'sha256', encoding: Encoding = 'utf-8'): string {
+export default function encrypt(text: string, algorithm = 'sha256', encoding: Encoding = 'utf-8'): string {
   return createHash(algorithm).update(text, encoding).digest('hex');
 }
