@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "projects": {
+    "tsm-data-collector": {
+      "root": "apps/tsm-data-collector",
+      "sourceRoot": "apps/tsm-data-collector/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tsm-data-collector",
+            "main": "apps/tsm-data-collector/src/main.ts",
+            "tsConfig": "apps/tsm-data-collector/tsconfig.app.json",
+            "assets": ["apps/tsm-data-collector/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/tsm-data-collector/src/environments/environment.ts",
+                  "with": "apps/tsm-data-collector/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "tsm-data-collector:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tsm-data-collector/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tsm-data-collector"],
+          "options": {
+            "jestConfig": "apps/tsm-data-collector/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "tsm-data-collector"
+}
