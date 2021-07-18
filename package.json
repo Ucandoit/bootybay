@@ -1,6 +1,6 @@
 {
   "name": "bootybay",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
@@ -23,10 +23,14 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "lint-staged": "lint-staged"
   },
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
+    "log4js": "^6.3.0",
+    "node-schedule": "^2.0.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -48,6 +52,7 @@
     "eslint-config-prettier": "8.1.0",
     "husky": "^7.0.1",
     "jest": "27.0.3",
+    "lint-staged": "^11.0.1",
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
@@ -58,9 +63,13 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
+  "lint-staged": {
+    "*.{js,ts}": [
+      "yarn affected:lint --uncommitted --parallel",
+      "yarn format:write --uncommitted"
+    ],
+    "*.{json,md}": [
+      "yarn format:write --uncommitted"
+    ]
   }
 }
