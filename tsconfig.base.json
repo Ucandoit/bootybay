@@ -1,23 +1,20 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["es2017", "dom"],
-    "module": "commonjs",
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "strict": true,
-    "declaration": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "sourceMap": true,
-    "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true
-  }
+    "baseUrl": ".",
+    "paths": {}
+  },
+  "exclude": ["node_modules", "tmp"]
 }
