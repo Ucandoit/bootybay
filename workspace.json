@@ -13,20 +13,13 @@
             "outputPath": "dist/apps/tsm-data-collector",
             "main": "apps/tsm-data-collector/src/main.ts",
             "tsConfig": "apps/tsm-data-collector/tsconfig.app.json",
-            "assets": ["apps/tsm-data-collector/src/assets"],
             "generatePackageJson": true
           },
           "configurations": {
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/tsm-data-collector/src/environments/environment.ts",
-                  "with": "apps/tsm-data-collector/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
