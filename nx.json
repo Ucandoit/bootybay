@@ -30,5 +30,9 @@
     "tsm-data-collector": {
       "tags": []
     }
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "tsm-data-collector"
 }

@@ -1,6 +1,56 @@
 {
   "version": 2,
   "projects": {
+    "auction-history": {
+      "root": "apps/auction-history",
+      "sourceRoot": "apps/auction-history/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/auction-history",
+            "main": "apps/auction-history/src/main.ts",
+            "tsConfig": "apps/auction-history/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/auction-history/src/environments/environment.ts",
+                  "with": "apps/auction-history/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "auction-history:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/auction-history/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/auction-history"],
+          "options": {
+            "jestConfig": "apps/auction-history/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "tsm-data-collector": {
       "root": "apps/tsm-data-collector",
       "sourceRoot": "apps/tsm-data-collector/src",
@@ -45,9 +95,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/node"
-  },
-  "defaultProject": "tsm-data-collector"
+  }
 }
