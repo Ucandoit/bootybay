@@ -29,10 +29,13 @@
   "private": true,
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/mongoose": "^9.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "axios": "^0.21.1",
     "log4js": "^6.3.0",
+    "mongoose": "^6.0.14",
     "node-schedule": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "remove": "^0.1.5",
