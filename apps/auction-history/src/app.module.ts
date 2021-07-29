@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuctionsModule } from './auctions/auctions.module';
+import { AuctionModule } from './auction/auction.module';
 import configuration from './config/configuration';
 
 @Module({
   imports: [
-    AuctionsModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [configuration],
@@ -21,6 +20,7 @@ import configuration from './config/configuration';
       imports: [ConfigModule],
       inject: [ConfigService],
     }),
+    AuctionModule,
   ],
 })
 export class AppModule {}
