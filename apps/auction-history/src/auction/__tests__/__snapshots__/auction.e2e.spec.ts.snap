@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if body is empty 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if historical is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if itemId is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"itemId\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if marketValue is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if minBuyout is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if numAuctions is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if realm is not a string 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"realm\\" must be a string",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if regionHistorical is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if regionMarketValue is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if regionSale is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if regionSalePercent is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if regionSoldPerDay is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" does not match any of the allowed types",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if required itemId is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"itemId\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if required realm is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"realm\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if required timestamp is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"timestamp\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if timestamp is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"timestamp\\" must be a number",
+  "statusCode": 400,
+}
+`;
