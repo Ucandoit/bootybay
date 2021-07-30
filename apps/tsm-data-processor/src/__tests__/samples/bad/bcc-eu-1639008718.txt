@@ -1,0 +1,1 @@
+{downloadTime=1639008714,fields={"itemString","regionMarketValue","regionHistorical","regionSale","regionSoldPerDay","regionSalePercent"}}

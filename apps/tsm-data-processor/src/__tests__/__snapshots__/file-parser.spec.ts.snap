@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileParser parse it should return a list if file is read correctly 1`] = `
+Array [
+  Object {
+    "itemString": "25005",
+    "realm": "bcc-eu",
+    "regionHistorical": 186323,
+    "regionMarketValue": 210814,
+    "regionSale": 117248,
+    "regionSalePercent": 8,
+    "regionSoldPerDay": 8,
+    "timestamp": 1639008717,
+  },
+  Object {
+    "itemString": "4790",
+    "realm": "bcc-eu",
+    "regionHistorical": 28698,
+    "regionMarketValue": 30974,
+    "regionSale": 6266,
+    "regionSalePercent": 1,
+    "regionSoldPerDay": 0,
+    "timestamp": 1639008717,
+  },
+  Object {
+    "itemString": "23626",
+    "realm": "bcc-eu",
+    "regionHistorical": 5776824,
+    "regionMarketValue": 5450345,
+    "regionSale": 3149950,
+    "regionSalePercent": 5,
+    "regionSoldPerDay": 0,
+    "timestamp": 1639008717,
+  },
+]
+`;
+
+exports[`FileParser parse it should return a list if file is read correctly 2`] = `
+Array [
+  Object {
+    "itemString": "38",
+    "realm": "bcc-eu-mograine-horde",
+    "regionHistorical": 50000,
+    "regionMarketValue": 50000,
+    "regionSale": 50000,
+    "regionSalePercent": NaN,
+    "regionSoldPerDay": 2,
+    "timestamp": 1639038664,
+  },
+  Object {
+    "itemString": "39",
+    "realm": "bcc-eu-mograine-horde",
+    "regionHistorical": 0,
+    "regionMarketValue": 200000,
+    "regionSale": 200000,
+    "regionSalePercent": NaN,
+    "regionSoldPerDay": 0,
+    "timestamp": 1639038664,
+  },
+  Object {
+    "itemString": "43",
+    "realm": "bcc-eu-mograine-horde",
+    "regionHistorical": 0,
+    "regionMarketValue": 200000,
+    "regionSale": 200000,
+    "regionSalePercent": NaN,
+    "regionSoldPerDay": 0,
+    "timestamp": 1639038664,
+  },
+]
+`;

@@ -63,6 +63,7 @@
             "outputPath": "dist/apps/tsm-data-collector",
             "main": "apps/tsm-data-collector/src/main.ts",
             "tsConfig": "apps/tsm-data-collector/tsconfig.app.json",
+            "assets": ["apps/tsm-data-collector/src/config"],
             "generatePackageJson": true
           },
           "configurations": {
@@ -94,6 +95,55 @@
           }
         }
       }
+    },
+    "tsm-data-processor": {
+      "root": "apps/tsm-data-processor",
+      "sourceRoot": "apps/tsm-data-processor/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tsm-data-processor",
+            "main": "apps/tsm-data-processor/src/main.ts",
+            "tsConfig": "apps/tsm-data-processor/tsconfig.app.json",
+            "assets": ["apps/tsm-data-processor/src/config"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "tsm-data-processor:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tsm-data-processor/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tsm-data-processor"],
+          "options": {
+            "jestConfig": "apps/tsm-data-processor/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "tsm-data-collector"
 }

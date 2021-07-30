@@ -36,6 +36,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "axios": "^0.21.1",
     "joi": "^17.5.0",
+    "js-yaml": "^4.1.0",
     "log4js": "^6.3.0",
     "mongoose": "^6.0.14",
     "node-schedule": "^2.0.0",
