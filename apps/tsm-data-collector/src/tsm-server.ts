@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { readFileSync } from 'fs';
 import { load } from 'js-yaml';
 import { getLogger } from 'log4js';
+import { resolve } from 'path';
 import { format } from 'util';
 import encrypt from './encrypt';
 import { LoginResponse } from './login-response';
@@ -14,7 +15,7 @@ export default class TsmServer {
   private tsmConfig: TsmServerConfig;
 
   constructor() {
-    this.tsmConfig = load(readFileSync(`config/application-dev.yml`, 'utf-8')) as TsmServerConfig;
+    this.tsmConfig = load(readFileSync(resolve(__dirname, `config/application.yml`), 'utf-8')) as TsmServerConfig;
     this.logger.debug(this.tsmConfig);
   }
 
