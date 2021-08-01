@@ -51,6 +51,51 @@
       },
       "tags": []
     },
+    "blizz-data": {
+      "root": "apps/blizz-data",
+      "sourceRoot": "apps/blizz-data/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/blizz-data",
+            "main": "apps/blizz-data/src/main.ts",
+            "tsConfig": "apps/blizz-data/tsconfig.app.json",
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "blizz-data:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/blizz-data/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/blizz-data"],
+          "options": {
+            "jestConfig": "apps/blizz-data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "tsm-data-collector": {
       "root": "apps/tsm-data-collector",
       "sourceRoot": "apps/tsm-data-collector/src",
@@ -141,9 +186,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/node"
-  },
-  "defaultProject": "tsm-data-collector"
+  }
 }

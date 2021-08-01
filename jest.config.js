@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/tsm-data-collector',
     '<rootDir>/apps/auction-history',
     '<rootDir>/apps/tsm-data-processor',
+    '<rootDir>/apps/blizz-data',
   ],
 };
