@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/auction-history',
     '<rootDir>/apps/tsm-data-processor',
     '<rootDir>/apps/blizz-data',
+    '<rootDir>/apps/blizz-client',
   ],
 };

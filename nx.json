@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "blizz-client": {
+      "tags": []
+    },
     "tsm-data-collector": {
       "tags": []
     },

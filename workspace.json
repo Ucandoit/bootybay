@@ -51,6 +51,56 @@
       },
       "tags": []
     },
+    "blizz-client": {
+      "root": "apps/blizz-client",
+      "sourceRoot": "apps/blizz-client/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/blizz-client",
+            "main": "apps/blizz-client/src/main.ts",
+            "tsConfig": "apps/blizz-client/tsconfig.app.json",
+            "assets": ["apps/blizz-client/src/config"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/blizz-client/src/environments/environment.ts",
+                  "with": "apps/blizz-client/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "blizz-client:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/blizz-client/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/blizz-client"],
+          "options": {
+            "jestConfig": "apps/blizz-client/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "blizz-data": {
       "root": "apps/blizz-data",
       "sourceRoot": "apps/blizz-data/src",
