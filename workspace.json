@@ -12,19 +12,14 @@
           "options": {
             "outputPath": "dist/apps/auction-history",
             "main": "apps/auction-history/src/main.ts",
-            "tsConfig": "apps/auction-history/tsconfig.app.json"
+            "tsConfig": "apps/auction-history/tsconfig.app.json",
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/auction-history/src/environments/environment.ts",
-                  "with": "apps/auction-history/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -46,6 +41,18 @@
           "options": {
             "jestConfig": "apps/auction-history/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "rm -rf ./dist/apps/auction-history",
+              "nx build auction-history",
+              "docker build -f ./apps/auction-history/Dockerfile -t registry.ucandoit.io/auction-history .",
+              "docker push registry.ucandoit.io/auction-history:latest"
+            ],
+            "parallel": false
           }
         }
       },
@@ -203,7 +210,6 @@
             "outputPath": "dist/apps/tsm-data-processor",
             "main": "apps/tsm-data-processor/src/main.ts",
             "tsConfig": "apps/tsm-data-processor/tsconfig.app.json",
-            "assets": ["apps/tsm-data-processor/src/config"],
             "generatePackageJson": true
           },
           "configurations": {

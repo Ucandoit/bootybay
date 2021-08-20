@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auction-history
+  namespace: bootybay
+  labels:
+    app: auction-history
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auction-history
+  template:
+    metadata:
+      labels:
+        app: auction-history
+    spec:
+      imagePullSecrets:
+        - name: docker-registry
+      volumes:
+        - name: auction-history-env
+          configMap:
+            name: auction-history-config
+      containers:
+      - name: auction-history
+        image: registry.ucandoit.io/auction-history:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http-entry
+          protocol: TCP
+          containerPort: 9000
+        volumeMounts:
+          - name: auction-history-env
+            mountPath: /app/.env
+            subPath: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auction-history
+  namespace: bootybay
+  labels:
+    app: auction-history
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-entry
+      protocol: TCP
+      port: 80
+      targetPort: 9000
+  selector:
+    app: auction-history
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: auction-history
+  namespace: bootybay
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: bootybay.ucandoit.io
+    http:
+      paths:
+      - path: /api/auction-history/?(.*)
+        backend:
+          serviceName: auction-history
+          servicePort: 80
