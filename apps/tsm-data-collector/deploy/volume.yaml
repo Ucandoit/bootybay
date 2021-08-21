@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tsm-volume
+  namespace: bootybay
+spec:
+  storageClassName: tsm
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: '/opt/k3dvolume/tsm'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tsm-volume-claim
+  namespace: bootybay
+spec:
+  storageClassName: tsm
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi

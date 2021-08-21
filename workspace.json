@@ -49,7 +49,7 @@
             "commands": [
               "rm -rf ./dist/apps/auction-history",
               "nx build auction-history",
-              "docker build -f ./apps/auction-history/Dockerfile -t registry.ucandoit.io/auction-history .",
+              "docker build -f ./apps/auction-history/deploy/Dockerfile -t registry.ucandoit.io/auction-history .",
               "docker push registry.ucandoit.io/auction-history:latest"
             ],
             "parallel": false
@@ -155,7 +155,7 @@
     },
     "tsm-data-collector": {
       "root": "apps/tsm-data-collector",
-      "sourceRoot": "apps/tsm-data-collector/src",
+      "sourceRoot": "apps/tsm-data-collector",
       "projectType": "application",
       "targets": {
         "build": {
@@ -165,7 +165,7 @@
             "outputPath": "dist/apps/tsm-data-collector",
             "main": "apps/tsm-data-collector/src/main.ts",
             "tsConfig": "apps/tsm-data-collector/tsconfig.app.json",
-            "assets": ["apps/tsm-data-collector/src/config"],
+            "assets": ["apps/tsm-data-collector/config/application.yaml"],
             "generatePackageJson": true
           },
           "configurations": {
@@ -194,6 +194,18 @@
           "options": {
             "jestConfig": "apps/tsm-data-collector/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "rm -rf ./dist/apps/tsm-data-collector",
+              "nx build tsm-data-collector",
+              "docker build -f ./apps/tsm-data-collector/deploy/Dockerfile -t registry.ucandoit.io/tsm-data-collector .",
+              "docker push registry.ucandoit.io/tsm-data-collector:latest"
+            ],
+            "parallel": false
           }
         }
       }

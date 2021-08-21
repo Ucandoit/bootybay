@@ -40,3 +40,5 @@ Thumbs.db
 
 .env
 env-config.yaml
+application-config.yaml
+application.yaml
