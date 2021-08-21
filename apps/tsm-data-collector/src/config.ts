@@ -11,4 +11,10 @@ export interface TsmServerConfig {
     version: string;
   };
   url: string;
+  downloadFolder: string;
+}
+
+export interface TsmDataCollectorConfig {
+  tsmServer: TsmServerConfig;
+  downloadFolder: string;
 }

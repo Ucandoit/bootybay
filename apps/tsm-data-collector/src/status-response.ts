@@ -9,7 +9,7 @@ export interface StatusResponse {
   'regions-BCC'?: Region[];
 }
 
-interface Realm {
+export interface Realm {
   id: number;
   masterId: number;
   name: string;
@@ -18,7 +18,7 @@ interface Realm {
   downloadUrl?: string;
 }
 
-interface Region {
+export interface Region {
   id: number | string;
   name: string;
   lastModified: number;

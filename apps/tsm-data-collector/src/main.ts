@@ -1,6 +1,10 @@
-import { configure, getLogger } from 'log4js';
+import { readFileSync } from 'fs';
+import { load } from 'js-yaml';
+import { configure } from 'log4js';
 import { scheduleJob } from 'node-schedule';
-import downloadFile from './file-downloader';
+import { resolve } from 'path';
+import { TsmDataCollectorConfig } from './config';
+import { TsmDataCollector } from './tsm-data-collector';
 import TsmServer from './tsm-server';
 
 configure({
@@ -11,41 +15,10 @@ configure({
   disableClustering: true,
 });
 
-const logger = getLogger('tsm-data-collector');
-const tsmServer = new TsmServer();
-const lastModified: { [key: string]: number } = {};
-
-const job = () => {
-  tsmServer
-    .getStatus()
-    .then((res) => {
-      res.data['regions-BCC']?.forEach(async (region) => {
-        if (region.downloadUrl) {
-          if (lastModified[region.name] === region.lastModified) {
-            logger.info('Already downloaded.');
-          } else {
-            logger.info('Download for region %s', region.name);
-            await downloadFile(region.downloadUrl, `./${region.name}-${region.lastModified}.txt`);
-            lastModified[region.name] = region.lastModified;
-          }
-        }
-      });
-
-      res.data['realms-BCC']?.forEach(async (realm) => {
-        if (realm.downloadUrl) {
-          if (lastModified[realm.name] === realm.lastModified) {
-            logger.info('Already downloaded.');
-          } else {
-            logger.info('Download for realm %s', realm.name);
-            await downloadFile(realm.downloadUrl, `./${realm.name}-${realm.lastModified}.txt`);
-            lastModified[realm.name] = realm.lastModified;
-          }
-        }
-      });
-    })
-    .catch((err) => {
-      logger.error(err);
-    });
+const job = async () => {
+  const config = load(readFileSync(resolve(__dirname, `config/application.yaml`), 'utf-8')) as TsmDataCollectorConfig;
+  const tsmDataCollector = new TsmDataCollector(new TsmServer(config.tsmServer), config.downloadFolder);
+  await tsmDataCollector.collect();
 };
 
 scheduleJob('*/10 * * * *', job);

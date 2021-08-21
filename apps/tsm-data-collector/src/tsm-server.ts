@@ -1,23 +1,15 @@
 import axios, { AxiosResponse } from 'axios';
-import { readFileSync } from 'fs';
-import { load } from 'js-yaml';
 import { getLogger } from 'log4js';
-import { resolve } from 'path';
 import { format } from 'util';
+import { TsmServerConfig } from './config';
 import encrypt from './encrypt';
 import { LoginResponse } from './login-response';
 import { StatusResponse } from './status-response';
-import { TsmServerConfig } from './tsm-server-config';
 
 export default class TsmServer {
   private logger = getLogger(TsmServer.name);
 
-  private tsmConfig: TsmServerConfig;
-
-  constructor() {
-    this.tsmConfig = load(readFileSync(resolve(__dirname, `config/application.yml`), 'utf-8')) as TsmServerConfig;
-    this.logger.debug(this.tsmConfig);
-  }
+  constructor(private tsmConfig: TsmServerConfig) {}
 
   async getStatus(): Promise<AxiosResponse<StatusResponse>> {
     const res = await this.login();
