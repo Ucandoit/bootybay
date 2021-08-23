@@ -42,7 +42,10 @@ describe('AuctionRepository', () => {
     describe('create a valid document', () => {
       let res: AuctionDocument;
       beforeEach(async () => {
-        res = await repository.create(auctionStub());
+        res = await repository.create({
+          ...auctionStub(),
+          _id: 'test',
+        });
       });
 
       test('result should have _id property', () => {
@@ -68,13 +71,31 @@ describe('AuctionRepository', () => {
         }).rejects.toThrowError();
       });
     });
+
+    describe('create two same documents', () => {
+      test('the second should throw an error', async () => {
+        const document = {
+          ...auctionStub(),
+          _id: 'test',
+        };
+        await repository.create(document);
+        expect(async () => {
+          await repository.create(document);
+        }).rejects.toThrowError();
+      });
+    });
   });
 
   describe('createMany', () => {
     describe('create some valid documents', () => {
       let res: AuctionDocument[];
       beforeEach(async () => {
-        res = await repository.createMany(auctionsStub());
+        res = await repository.createMany(
+          auctionsStub().map((auction) => ({
+            ...auction,
+            _id: `${auction.itemId}-${auction.realm}-${auction.regionHistorical}`,
+          }))
+        );
       });
 
       test('result should be an array', () => {

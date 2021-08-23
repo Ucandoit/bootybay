@@ -5,6 +5,9 @@ export type AuctionDocument = Auction & Document;
 @Schema({ collection: 'auctions' })
 export class Auction {
   @Prop({ required: true })
+  _id: string;
+
+  @Prop({ required: true })
   itemId: number;
 
   @Prop({ required: true })

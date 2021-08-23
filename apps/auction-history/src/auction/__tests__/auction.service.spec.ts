@@ -28,12 +28,12 @@ describe('AuctionService', () => {
   describe('createAuction', () => {
     it('should call createMany when passed with an array.', () => {
       service.createAuction(auctionsStub());
-      expect(repository.createMany).toBeCalledWith(auctionsStub());
+      expect(repository.createMany).toBeCalledWith(auctionsStub().map((auction) => expect.objectContaining(auction)));
     });
 
     it('should call create when passed with an object.', () => {
       service.createAuction(auctionStub());
-      expect(repository.create).toBeCalledWith(auctionStub());
+      expect(repository.create).toBeCalledWith(expect.objectContaining(auctionStub()));
     });
   });
 });

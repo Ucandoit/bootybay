@@ -205,28 +205,28 @@ describe('Auction e2e tests', () => {
       await request(app.getHttpServer()).post('/').send(auctionStub()).expect(201);
       const documents = await model.find({});
       expect(documents).toHaveLength(1);
-      expect(documents[0]).toMatchObject(auctionStub());
+      expect(documents[0]).toMatchSnapshot();
     });
 
     test('should return 201 with realm auction', async () => {
       await request(app.getHttpServer()).post('/').send(realAuctionStub()).expect(201);
       const documents = await model.find({});
       expect(documents).toHaveLength(1);
-      expect(documents[0]).toMatchObject(realAuctionStub());
+      expect(documents[0]).toMatchSnapshot();
     });
 
     test('should return 201 with regional auction array', async () => {
       await request(app.getHttpServer()).post('/').send(auctionsStub()).expect(201);
       const documents = await model.find({});
       expect(documents).toHaveLength(2);
-      expect(documents).toMatchObject(auctionsStub());
+      expect(documents).toMatchSnapshot();
     });
 
     test('should return 201 with realm auction array', async () => {
       await request(app.getHttpServer()).post('/').send(realAuctionsStub()).expect(201);
       const documents = await model.find({});
       expect(documents).toHaveLength(2);
-      expect(documents).toMatchObject(realAuctionsStub());
+      expect(documents).toMatchSnapshot();
     });
 
     test('unknown properties should be ignored', async () => {
@@ -239,8 +239,17 @@ describe('Auction e2e tests', () => {
         .expect(201);
       const documents = await model.find({});
       expect(documents).toHaveLength(1);
-      expect(documents[0]).toMatchObject(auctionStub());
+      expect(documents[0]).toMatchSnapshot();
       expect(Reflect.hasOwnMetadata('unknown', documents[0])).toBe(false);
+    });
+
+    test('should return 500 if auction history already exists', async () => {
+      await request(app.getHttpServer()).post('/').send(auctionStub()).expect(201);
+      await request(app.getHttpServer()).post('/').send(auctionStub()).expect(500);
+      // check that only one record is added
+      const documents = await model.find({});
+      expect(documents).toHaveLength(1);
+      expect(documents[0]).toMatchSnapshot();
     });
   });
 
