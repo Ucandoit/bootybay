@@ -57,8 +57,8 @@ describe('TsmDataProcessor', () => {
       await processor.process();
       expect(fileParserSpy).toBeCalledTimes(2);
       expect(mockedAxios.post).toBeCalledTimes(2);
-      expect(mockedAxios.post.mock.calls[0][0]).toBe('http://localhost:9000');
-      expect(mockedAxios.post.mock.calls[0][1]).toBe(auctionsMock);
+      expect(mockedAxios.post.mock.calls[0][0]).toEqual('http://localhost:9000');
+      expect(mockedAxios.post.mock.calls[0][1]).toEqual(auctionsMock);
       expect(fsRenameSpy).toBeCalledTimes(2);
     });
 
@@ -93,9 +93,66 @@ describe('TsmDataProcessor', () => {
       await processor.process();
       expect(fileParserSpy).toBeCalledTimes(2);
       expect(mockedAxios.post).toBeCalledTimes(1);
-      expect(mockedAxios.post.mock.calls[0][0]).toBe('http://localhost:9000');
-      expect(mockedAxios.post.mock.calls[0][1]).toBe(auctionsMock);
+      expect(mockedAxios.post.mock.calls[0][0]).toEqual('http://localhost:9000');
+      expect(mockedAxios.post.mock.calls[0][1]).toEqual(auctionsMock);
       expect(fsRenameSpy).toBeCalledTimes(1);
+    });
+
+    test('it should send auctions in chunks of 20.', async () => {
+      const processor = new TsmDataProcessor(
+        {
+          rootFolder: join(__dirname, 'samples/good/single'),
+          auctionHistoryUrl: 'http://localhost:9000',
+          archiveFolder: '',
+        },
+        fileParser
+      );
+      const auctionsMock = Array(21).fill({
+        itemString: '43',
+        realm: 'bcc-eu-mograine-horde',
+        regionHistorical: 0,
+        regionMarketValue: 200000,
+        regionSale: 200000,
+        regionSalePercent: NaN,
+        regionSoldPerDay: 0,
+        timestamp: 1639038664,
+      });
+      const fileParserSpy = jest.spyOn(fileParser, 'parse');
+      fileParserSpy.mockImplementation(() => auctionsMock);
+      const fsRenameSpy = jest.spyOn(fs, 'renameSync');
+      fsRenameSpy.mockImplementation(() => jest.fn());
+      await processor.process();
+      expect(mockedAxios.post).toBeCalledTimes(2);
+      expect(mockedAxios.post.mock.calls[0][1].length).toEqual(20);
+      expect(mockedAxios.post.mock.calls[1][1].length).toEqual(1);
+    });
+
+    test('it should stop sending chunks if a request fails.', async () => {
+      const processor = new TsmDataProcessor(
+        {
+          rootFolder: join(__dirname, 'samples/good/single'),
+          auctionHistoryUrl: 'http://localhost:9000',
+          archiveFolder: '',
+        },
+        fileParser
+      );
+      const auctionsMock = Array(21).fill({
+        itemString: '43',
+        realm: 'bcc-eu-mograine-horde',
+        regionHistorical: 0,
+        regionMarketValue: 200000,
+        regionSale: 200000,
+        regionSalePercent: NaN,
+        regionSoldPerDay: 0,
+        timestamp: 1639038664,
+      });
+      const fileParserSpy = jest.spyOn(fileParser, 'parse');
+      fileParserSpy.mockImplementation(() => auctionsMock);
+      mockedAxios.post.mockRejectedValueOnce({ message: 'error' });
+      const fsRenameSpy = jest.spyOn(fs, 'renameSync');
+      fsRenameSpy.mockImplementation(() => jest.fn());
+      await processor.process();
+      expect(mockedAxios.post).toBeCalledTimes(1);
     });
   });
 });

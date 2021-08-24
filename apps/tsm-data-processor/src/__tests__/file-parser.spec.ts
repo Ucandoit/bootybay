@@ -34,5 +34,11 @@ describe('FileParser', () => {
       const realmAuctions = fileParser.parse(join(__dirname, 'samples/good'), 'bcc-eu-mograine-horde-1639038664.txt');
       expect(realmAuctions).toMatchSnapshot();
     });
+
+    test('it should throw error if data format is not correct in the file', () => {
+      expect(() => {
+        fileParser.parse(join(__dirname, 'samples/bad/'), 'bcc-eu-1639008719.txt');
+      }).toThrowError('Data format incorrect');
+    });
   });
 });

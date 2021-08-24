@@ -22,16 +22,32 @@ export default class FileParser {
       // remove '{' and '}' from section
       section = section.replace(/({|})/g, '');
       const fields = section.split(',');
-      auctions.push({
-        itemString: fields[0],
-        realm,
-        timestamp,
-        regionMarketValue: parseInt(fields[1], 10),
-        regionHistorical: parseInt(fields[2], 10),
-        regionSale: parseInt(fields[3], 10),
-        regionSoldPerDay: parseInt(fields[4], 10),
-        regionSalePercent: parseInt(fields[5], 10),
-      });
+
+      if (realm.split('-').length === 2 && fields.length === 6) {
+        auctions.push({
+          itemString: fields[0],
+          realm,
+          timestamp,
+          regionMarketValue: parseInt(fields[1], 10),
+          regionHistorical: parseInt(fields[2], 10),
+          regionSale: parseInt(fields[3], 10),
+          regionSoldPerDay: parseInt(fields[4], 10),
+          regionSalePercent: parseInt(fields[5], 10),
+        });
+      } else if (realm.split('-').length > 2 && fields.length === 5) {
+        auctions.push({
+          itemString: fields[0],
+          realm,
+          timestamp,
+          marketValue: parseInt(fields[1], 10),
+          minBuyout: parseInt(fields[2], 10),
+          historical: parseInt(fields[3], 10),
+          numAuctions: parseInt(fields[4], 10),
+        });
+      } else {
+        this.logger.error('Data format incorrect.');
+        throw new Error('Data format incorrect');
+      }
     }
 
     this.logger.info('Finish parsing file %s.', filename);
