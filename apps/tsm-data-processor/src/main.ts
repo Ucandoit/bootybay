@@ -20,6 +20,4 @@ const job = async () => {
   await processor.process();
 };
 
-job();
-
-scheduleJob('0 * * * *', job);
+scheduleJob('5 * * * *', job);

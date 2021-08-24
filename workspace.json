@@ -252,6 +252,18 @@
             "jestConfig": "apps/tsm-data-processor/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "rm -rf ./dist/apps/tsm-data-processor",
+              "nx build tsm-data-processor",
+              "docker build -f ./apps/tsm-data-processor/deploy/Dockerfile -t registry.ucandoit.io/tsm-data-processor .",
+              "docker push registry.ucandoit.io/tsm-data-processor:latest"
+            ],
+            "parallel": false
+          }
         }
       }
     }

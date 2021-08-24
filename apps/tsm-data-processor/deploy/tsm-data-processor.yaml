@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tsm-data-processor
+  namespace: bootybay
+  labels:
+    app: tsm-data-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tsm-data-processor
+  template:
+    metadata:
+      labels:
+        app: tsm-data-processor
+    spec:
+      imagePullSecrets:
+        - name: docker-registry
+      volumes:
+        - name: tsm-data-processor-yaml
+          configMap:
+            name: tsm-data-processor-config
+        - name: tsm-data
+          persistentVolumeClaim:
+            claimName: tsm-volume-claim
+      containers:
+        - name: tsm-data-processor
+          image: registry.ucandoit.io/tsm-data-processor:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: tsm-data-processor-yaml
+              mountPath: /app/config/application.yaml
+              subPath: application.yaml
+            - name: tsm-data
+              mountPath: '/app/tsm-data'
+      initContainers:
+        - name: volume-mount-hack
+          image: busybox
+          command: ['sh', '-c', 'mkdir -p /app/tsm-data/archive && chown -R 1001:1001 /app/tsm-data']
+          volumeMounts:
+            - name: tsm-data
+              mountPath: '/app/tsm-data'

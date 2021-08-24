@@ -40,12 +40,7 @@ export default class TsmDataProcessor {
           this.logger.info('Move file %s to archive folder.', file);
           renameSync(join(this.config.rootFolder, file), join(this.config.archiveFolder, file));
         } catch (err) {
-          this.logger.error(
-            'Processing error. Message: %s, stack: %s, response: %s',
-            err.message,
-            err.stack,
-            err.response
-          );
+          this.logger.error('Processing error.', err);
         }
       }
     }
