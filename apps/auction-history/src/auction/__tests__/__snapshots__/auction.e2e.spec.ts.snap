@@ -16,10 +16,10 @@ Object {
 }
 `;
 
-exports[`Auction e2e tests POST / request with invalid request body should return 400 if itemId is not a number 1`] = `
+exports[`Auction e2e tests POST / request with invalid request body should return 400 if itemId is not a string 1`] = `
 Object {
   "error": "Bad Request",
-  "message": "\\"itemId\\" must be a number",
+  "message": "\\"itemString\\" must be a string",
   "statusCode": 400,
 }
 `;
@@ -99,7 +99,7 @@ Object {
 exports[`Auction e2e tests POST / request with invalid request body should return 400 if required itemId is missing 1`] = `
 Object {
   "error": "Bad Request",
-  "message": "\\"itemId\\" is required",
+  "message": "\\"itemString\\" is required",
   "statusCode": 400,
 }
 `;
@@ -133,7 +133,7 @@ Object {
   "__v": 0,
   "_id": "1-bcc-eu-mograine-horde-1627580614000",
   "historical": 1,
-  "itemId": 1,
+  "itemString": "1",
   "marketValue": 1.2,
   "minBuyout": 1.5,
   "numAuctions": 5,
@@ -148,7 +148,7 @@ Array [
     "__v": 0,
     "_id": "1-bcc-eu-mograine-horde-1627580614000",
     "historical": 1,
-    "itemId": 1,
+    "itemString": "1",
     "marketValue": 1.2,
     "minBuyout": 1.5,
     "numAuctions": 5,
@@ -159,7 +159,7 @@ Array [
     "__v": 0,
     "_id": "2-bcc-eu-mograine-horde-1627580614000",
     "historical": 1,
-    "itemId": 2,
+    "itemString": "2",
     "marketValue": 1.2,
     "minBuyout": 1.5,
     "numAuctions": 5,
@@ -173,7 +173,7 @@ exports[`Auction e2e tests request with valid request body should return 201 wit
 Object {
   "__v": 0,
   "_id": "1-bcc-eu-regional-1627580614000",
-  "itemId": 1,
+  "itemString": "1",
   "realm": "bcc-eu-regional",
   "regionHistorical": 1.5,
   "regionMarketValue": 1.2,
@@ -189,7 +189,7 @@ Array [
   Object {
     "__v": 0,
     "_id": "1-bcc-eu-regional-1627580614000",
-    "itemId": 1,
+    "itemString": "1",
     "realm": "bcc-eu-regional",
     "regionHistorical": 1.5,
     "regionMarketValue": 1.2,
@@ -201,7 +201,7 @@ Array [
   Object {
     "__v": 0,
     "_id": "2-bcc-eu-regional-1627580614000",
-    "itemId": 2,
+    "itemString": "2",
     "realm": "bcc-eu-regional",
     "regionHistorical": 1.5,
     "regionMarketValue": 1.2,
@@ -217,7 +217,7 @@ exports[`Auction e2e tests request with valid request body should return 500 if 
 Object {
   "__v": 0,
   "_id": "1-bcc-eu-regional-1627580614000",
-  "itemId": 1,
+  "itemString": "1",
   "realm": "bcc-eu-regional",
   "regionHistorical": 1.5,
   "regionMarketValue": 1.2,
@@ -232,7 +232,7 @@ exports[`Auction e2e tests request with valid request body unknown properties sh
 Object {
   "__v": 0,
   "_id": "1-bcc-eu-regional-1627580614000",
-  "itemId": 1,
+  "itemString": "1",
   "realm": "bcc-eu-regional",
   "regionHistorical": 1.5,
   "regionMarketValue": 1.2,

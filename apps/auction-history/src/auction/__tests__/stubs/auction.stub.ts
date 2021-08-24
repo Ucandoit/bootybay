@@ -2,7 +2,7 @@ import { CreateAuctionDto } from '../../dto/auction.dto';
 
 export const auctionsStub = () => [
   {
-    itemId: 1,
+    itemString: '1',
     realm: 'bcc-eu-regional',
     timestamp: 1627580614000,
     regionMarketValue: 1.2,
@@ -12,7 +12,7 @@ export const auctionsStub = () => [
     regionSalePercent: 0.2,
   },
   {
-    itemId: 2,
+    itemString: '2',
     realm: 'bcc-eu-regional',
     timestamp: 1627580614000,
     regionMarketValue: 1.2,
@@ -24,7 +24,7 @@ export const auctionsStub = () => [
 ];
 
 export const auctionStub = (): CreateAuctionDto => ({
-  itemId: 1,
+  itemString: '1',
   realm: 'bcc-eu-regional',
   timestamp: 1627580614000,
   regionMarketValue: 1.2,
@@ -35,7 +35,7 @@ export const auctionStub = (): CreateAuctionDto => ({
 });
 
 export const realAuctionStub = (): CreateAuctionDto => ({
-  itemId: 1,
+  itemString: '1',
   realm: 'bcc-eu-mograine-horde',
   timestamp: 1627580614000,
   marketValue: 1.2,
@@ -46,7 +46,7 @@ export const realAuctionStub = (): CreateAuctionDto => ({
 
 export const realAuctionsStub = (): CreateAuctionDto => [
   {
-    itemId: 1,
+    itemString: '1',
     realm: 'bcc-eu-mograine-horde',
     timestamp: 1627580614000,
     marketValue: 1.2,
@@ -55,7 +55,7 @@ export const realAuctionsStub = (): CreateAuctionDto => [
     numAuctions: 5,
   },
   {
-    itemId: 2,
+    itemString: '2',
     realm: 'bcc-eu-mograine-horde',
     timestamp: 1627580614000,
     marketValue: 1.2,

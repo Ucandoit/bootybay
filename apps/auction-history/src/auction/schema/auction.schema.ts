@@ -8,7 +8,7 @@ export class Auction {
   _id: string;
 
   @Prop({ required: true })
-  itemId: number;
+  itemString: string;
 
   @Prop({ required: true })
   realm: string;

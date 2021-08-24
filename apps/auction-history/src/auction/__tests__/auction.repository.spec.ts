@@ -93,7 +93,7 @@ describe('AuctionRepository', () => {
         res = await repository.createMany(
           auctionsStub().map((auction) => ({
             ...auction,
-            _id: `${auction.itemId}-${auction.realm}-${auction.regionHistorical}`,
+            _id: `${auction.itemString}-${auction.realm}-${auction.regionHistorical}`,
           }))
         );
       });

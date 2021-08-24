@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 
 const objectSchema = Joi.object({
-  itemId: Joi.number().required(),
+  itemString: Joi.string().required(),
   realm: Joi.string().required(),
   timestamp: Joi.number().required(),
   regionMarketValue: Joi.number(),

@@ -59,7 +59,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if required realm is missing',
           body: {
-            itemId: 1,
+            itemString: '1',
             timestamp: 1627580614000,
           },
           status: 400,
@@ -67,15 +67,15 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if required timestamp is missing',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
           },
           status: 400,
         },
         {
-          description: 'should return 400 if itemId is not a number',
+          description: 'should return 400 if itemId is not a string',
           body: {
-            itemId: 'test',
+            itemString: 1,
             realm: 'bcc-eu-regional',
             timestamp: 1627580614000,
           },
@@ -84,7 +84,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if realm is not a string',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 123,
             timestamp: 1627580614000,
           },
@@ -93,7 +93,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if timestamp is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
           },
@@ -102,7 +102,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if regionMarketValue is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             regionMarketValue: 'test',
@@ -112,7 +112,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if regionHistorical is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             regionHistorical: 'test',
@@ -122,7 +122,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if regionSale is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             regionSale: 'test',
@@ -132,7 +132,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if regionSoldPerDay is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             regionSoldPerDay: 'test',
@@ -142,7 +142,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if regionSalePercent is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             regionSalePercent: 'test',
@@ -152,7 +152,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if marketValue is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             marketValue: 'test',
@@ -162,7 +162,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if minBuyout is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             minBuyout: 'test',
@@ -172,7 +172,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if historical is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             historical: 'test',
@@ -182,7 +182,7 @@ describe('Auction e2e tests', () => {
         {
           description: 'should return 400 if numAuctions is not a number',
           body: {
-            itemId: 1,
+            itemString: '1',
             realm: 'bcc-eu-regional',
             timestamp: 'test',
             numAuctions: 'test',

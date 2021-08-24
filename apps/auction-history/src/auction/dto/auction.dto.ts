@@ -1,5 +1,5 @@
 interface BaseAuction {
-  itemId: number;
+  itemString: string;
   realm: string;
   timestamp: number;
 }

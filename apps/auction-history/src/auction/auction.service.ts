@@ -11,13 +11,13 @@ export class AuctionService {
       await this.auctionRepository.createMany(
         createAuctionDto.map((dto: RegionalAuction | RealmAuction) => ({
           ...dto,
-          _id: `${dto.itemId}-${dto.realm}-${dto.timestamp}`,
+          _id: `${dto.itemString}-${dto.realm}-${dto.timestamp}`,
         }))
       );
     } else {
       await this.auctionRepository.create({
         ...createAuctionDto,
-        _id: `${createAuctionDto.itemId}-${createAuctionDto.realm}-${createAuctionDto.timestamp}`,
+        _id: `${createAuctionDto.itemString}-${createAuctionDto.realm}-${createAuctionDto.timestamp}`,
       });
     }
   }
