@@ -33,9 +33,12 @@ export class TsmDataCollector {
         this.logger.info('Already downloaded.');
       } else {
         this.logger.info('Download for %s', source.name);
+        const name = source.name.toLowerCase().startsWith('bcc-eu')
+          ? source.name.toLowerCase()
+          : `bcc-eu-${source.name.toLowerCase()}`;
         const finishedPromise = promisify(finished);
         const writer = createWriteStream(
-          resolve(__dirname, `${this.downloadFolder}/${source.name}-${source.lastModified}.txt`)
+          resolve(__dirname, `${this.downloadFolder}/${name}-${source.lastModified}.txt`)
         );
         const response = await axios.get(source.downloadUrl, {
           responseType: 'stream',
