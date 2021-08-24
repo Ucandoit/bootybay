@@ -212,7 +212,7 @@
     },
     "tsm-data-processor": {
       "root": "apps/tsm-data-processor",
-      "sourceRoot": "apps/tsm-data-processor/src",
+      "sourceRoot": "apps/tsm-data-processor",
       "projectType": "application",
       "targets": {
         "build": {
@@ -222,6 +222,7 @@
             "outputPath": "dist/apps/tsm-data-processor",
             "main": "apps/tsm-data-processor/src/main.ts",
             "tsConfig": "apps/tsm-data-processor/tsconfig.app.json",
+            "assets": ["apps/tsm-data-processor/config"],
             "generatePackageJson": true
           },
           "configurations": {

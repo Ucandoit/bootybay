@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as fs from 'fs';
 import { join } from 'path';
 import FileParser from '../file-parser';
 import TsmDataProcessor from '../tsm-data-processor';
@@ -19,6 +20,7 @@ describe('TsmDataProcessor', () => {
         {
           rootFolder: join(__dirname, 'notFound'),
           auctionHistoryUrl: 'http://localhost:9000',
+          archiveFolder: '',
         },
         fileParser
       );
@@ -32,6 +34,7 @@ describe('TsmDataProcessor', () => {
         {
           rootFolder: join(__dirname, 'samples/good'),
           auctionHistoryUrl: 'http://localhost:9000',
+          archiveFolder: '',
         },
         fileParser
       );
@@ -49,11 +52,14 @@ describe('TsmDataProcessor', () => {
       ];
       const fileParserSpy = jest.spyOn(fileParser, 'parse');
       fileParserSpy.mockImplementation(() => auctionsMock);
+      const fsRenameSpy = jest.spyOn(fs, 'renameSync');
+      fsRenameSpy.mockImplementation(() => jest.fn());
       await processor.process();
       expect(fileParserSpy).toBeCalledTimes(2);
       expect(mockedAxios.post).toBeCalledTimes(2);
       expect(mockedAxios.post.mock.calls[0][0]).toBe('http://localhost:9000');
       expect(mockedAxios.post.mock.calls[0][1]).toBe(auctionsMock);
+      expect(fsRenameSpy).toBeCalledTimes(2);
     });
 
     test('it should continue to process other files if an error is raised for a file', async () => {
@@ -61,6 +67,7 @@ describe('TsmDataProcessor', () => {
         {
           rootFolder: join(__dirname, 'samples/good'),
           auctionHistoryUrl: 'http://localhost:9000',
+          archiveFolder: '',
         },
         fileParser
       );
@@ -81,11 +88,14 @@ describe('TsmDataProcessor', () => {
         throw new Error();
       });
       fileParserSpy.mockImplementationOnce(() => auctionsMock);
+      const fsRenameSpy = jest.spyOn(fs, 'renameSync');
+      fsRenameSpy.mockImplementation(() => jest.fn());
       await processor.process();
       expect(fileParserSpy).toBeCalledTimes(2);
       expect(mockedAxios.post).toBeCalledTimes(1);
       expect(mockedAxios.post.mock.calls[0][0]).toBe('http://localhost:9000');
       expect(mockedAxios.post.mock.calls[0][1]).toBe(auctionsMock);
+      expect(fsRenameSpy).toBeCalledTimes(1);
     });
   });
 });
