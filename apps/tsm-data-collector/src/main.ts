@@ -15,9 +15,10 @@ configure({
   disableClustering: true,
 });
 
+const config = load(readFileSync(resolve(__dirname, `config/application.yaml`), 'utf-8')) as TsmDataCollectorConfig;
+const tsmDataCollector = new TsmDataCollector(new TsmServer(config.tsmServer), config.downloadFolder);
+
 const job = async () => {
-  const config = load(readFileSync(resolve(__dirname, `config/application.yaml`), 'utf-8')) as TsmDataCollectorConfig;
-  const tsmDataCollector = new TsmDataCollector(new TsmServer(config.tsmServer), config.downloadFolder);
   await tsmDataCollector.collect();
 };
 

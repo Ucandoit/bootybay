@@ -32,10 +32,10 @@ export class TsmDataCollector {
       if (this.lastModified[source.name] === source.lastModified) {
         this.logger.info('Already downloaded.');
       } else {
-        this.logger.info('Download for %s', source.name);
         const name = source.name.toLowerCase().startsWith('bcc-eu')
           ? source.name.toLowerCase()
           : `bcc-eu-${source.name.toLowerCase()}`;
+        this.logger.info('Download for %s, filename: %s', source.name, `${name}-${source.lastModified}.txt`);
         const finishedPromise = promisify(finished);
         const writer = createWriteStream(
           resolve(__dirname, `${this.downloadFolder}/${name}-${source.lastModified}.txt`)
