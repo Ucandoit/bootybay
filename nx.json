@@ -30,6 +30,13 @@
     "blizz-client": {
       "tags": []
     },
+    "bootybay-front": {
+      "tags": []
+    },
+    "bootybay-front-e2e": {
+      "tags": [],
+      "implicitDependencies": ["bootybay-front"]
+    },
     "tsm-data-collector": {
       "tags": []
     },

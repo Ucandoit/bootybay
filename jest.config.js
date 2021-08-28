@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/apps/tsm-data-processor',
     '<rootDir>/apps/blizz-data',
     '<rootDir>/apps/blizz-client',
+    '<rootDir>/apps/bootybay-front',
   ],
 };

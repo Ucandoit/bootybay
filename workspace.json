@@ -153,6 +153,105 @@
       },
       "tags": []
     },
+    "bootybay-front": {
+      "root": "apps/bootybay-front",
+      "sourceRoot": "apps/bootybay-front/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/bootybay-front",
+            "index": "apps/bootybay-front/src/index.html",
+            "main": "apps/bootybay-front/src/main.tsx",
+            "polyfills": "apps/bootybay-front/src/polyfills.ts",
+            "tsConfig": "apps/bootybay-front/tsconfig.app.json",
+            "assets": ["apps/bootybay-front/src/favicon.ico", "apps/bootybay-front/src/assets"],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/bootybay-front/src/environments/environment.ts",
+                  "with": "apps/bootybay-front/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "bootybay-front:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "bootybay-front:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/bootybay-front/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bootybay-front"],
+          "options": {
+            "jestConfig": "apps/bootybay-front/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bootybay-front-e2e": {
+      "root": "apps/bootybay-front-e2e",
+      "sourceRoot": "apps/bootybay-front-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/bootybay-front-e2e/cypress.json",
+            "tsConfig": "apps/bootybay-front-e2e/tsconfig.e2e.json",
+            "devServerTarget": "bootybay-front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bootybay-front:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/bootybay-front-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "tsm-data-collector": {
       "root": "apps/tsm-data-collector",
       "sourceRoot": "apps/tsm-data-collector",
@@ -265,6 +364,26 @@
             "parallel": false
           }
         }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "tsm-data-collector",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
       }
     }
   }
