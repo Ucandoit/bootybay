@@ -16,3 +16,9 @@ const objectSchema = Joi.object({
 });
 
 export const createAuctionSchema: Joi.AnySchema = Joi.alternatives().try(objectSchema, Joi.array().items(objectSchema));
+
+export const recentAuctionsRequestSchema = Joi.object({
+  realm: Joi.string().required(),
+  page: Joi.number().positive().allow(0),
+  size: Joi.number().positive(),
+});
