@@ -224,6 +224,18 @@
             "jestConfig": "apps/bootybay-front/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "rm -rf ./dist/apps/bootybay-front",
+              "nx build bootybay-front",
+              "docker build -f ./apps/bootybay-front/deploy/Dockerfile -t registry.ucandoit.io/bootybay-front .",
+              "docker push registry.ucandoit.io/bootybay-front:latest"
+            ],
+            "parallel": false
+          }
         }
       }
     },
