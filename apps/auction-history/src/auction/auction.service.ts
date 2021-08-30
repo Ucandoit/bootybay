@@ -26,7 +26,7 @@ export class AuctionService {
   async getAuctionByRealm({
     realm,
     page = 0,
-    size = 20,
+    size = 10,
   }: RecentAuctionsRequestDto): Promise<RecentAuctionsResponseDto> {
     const total = await this.auctionRepository.countMostRecentByRealm(realm);
     const auctions = await this.auctionRepository.findMostRecentByRealm(realm, page, size);

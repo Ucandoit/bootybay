@@ -67,8 +67,8 @@ export class AuctionRepository {
       .sort({
         [sort]: -1,
       })
-      .limit(size)
-      .skip(page * size);
+      .skip(page * size)
+      .limit(size);
   }
 
   async countMostRecentByRealm(realm: string): Promise<number> {
