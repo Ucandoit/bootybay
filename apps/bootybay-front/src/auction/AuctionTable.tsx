@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import useAsyncFunction from '../commons/helper/useAsyncFunction';
 import usePagination from '../commons/table/usePagination';
+import CurrencyText from './MoneyText';
 
 export interface AuctionsResponse {
   total: number;
@@ -49,16 +50,16 @@ export function AuctionTable() {
         <Table aria-labelledby="tableTitle">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Market</TableCell>
-              <TableCell>Region market</TableCell>
-              <TableCell>Historical</TableCell>
-              <TableCell>Region historical</TableCell>
-              <TableCell>Region sale</TableCell>
-              <TableCell>Region sale rate</TableCell>
-              <TableCell>Region sold per day</TableCell>
-              <TableCell>Lowest</TableCell>
-              <TableCell>Amount</TableCell>
+              <TableCell align={'center'}>Name</TableCell>
+              <TableCell align={'right'}>Market</TableCell>
+              <TableCell align={'right'}>Region market</TableCell>
+              <TableCell align={'right'}>Historical</TableCell>
+              <TableCell align={'right'}>Region historical</TableCell>
+              <TableCell align={'right'}>Region sale</TableCell>
+              <TableCell align={'right'}>Lowest</TableCell>
+              <TableCell align={'right'}>Region sale rate</TableCell>
+              <TableCell align={'right'}>Region sold per day</TableCell>
+              <TableCell align={'right'}>Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,16 +70,28 @@ export function AuctionTable() {
             ) : (
               auctions.map((auction) => (
                 <TableRow key={auction.itemString}>
-                  <TableCell>{auction.itemString}</TableCell>
-                  <TableCell>{auction.marketValue}</TableCell>
-                  <TableCell>{auction.regionMarketValue}</TableCell>
-                  <TableCell>{auction.historical}</TableCell>
-                  <TableCell>{auction.regionHistorical}</TableCell>
-                  <TableCell>{auction.regionSale}</TableCell>
-                  <TableCell>{auction.regionSalePercent}</TableCell>
-                  <TableCell>{auction.regionSoldPerDay}</TableCell>
-                  <TableCell>{auction.minBuyout}</TableCell>
-                  <TableCell>{auction.numAuctions}</TableCell>
+                  <TableCell align={'center'}>{auction.itemString}</TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.marketValue} />
+                  </TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.regionMarketValue} />
+                  </TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.historical} />
+                  </TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.regionHistorical} />
+                  </TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.regionSale} />
+                  </TableCell>
+                  <TableCell align={'right'}>
+                    <CurrencyText value={auction.minBuyout} />
+                  </TableCell>
+                  <TableCell align={'right'}>{auction.regionSalePercent}%</TableCell>
+                  <TableCell align={'right'}>{auction.regionSoldPerDay / 100}</TableCell>
+                  <TableCell align={'right'}>{auction.numAuctions}</TableCell>
                 </TableRow>
               ))
             )}
