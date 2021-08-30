@@ -167,7 +167,7 @@
             "main": "apps/bootybay-front/src/main.tsx",
             "polyfills": "apps/bootybay-front/src/polyfills.ts",
             "tsConfig": "apps/bootybay-front/tsconfig.app.json",
-            "assets": ["apps/bootybay-front/src/favicon.ico", "apps/bootybay-front/src/assets"],
+            "assets": ["apps/bootybay-front/src/favicon.ico"],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -201,7 +201,8 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "bootybay-front:build",
-            "hmr": true
+            "hmr": true,
+            "proxyConfig": "apps/bootybay-front/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -374,15 +375,15 @@
   "generators": {
     "@nrwl/react": {
       "application": {
-        "style": "styled-components",
+        "style": "@emotion/styled",
         "linter": "eslint",
         "babel": true
       },
       "component": {
-        "style": "styled-components"
+        "style": "@emotion/styled"
       },
       "library": {
-        "style": "styled-components",
+        "style": "@emotion/styled",
         "linter": "eslint"
       }
     }
