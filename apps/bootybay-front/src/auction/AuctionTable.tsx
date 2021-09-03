@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -27,10 +27,10 @@ export interface AuctionsResponse {
   }>;
 }
 
-const getMostRecentAuctions = async (realm: string, page: number, size: number): Promise<AuctionsResponse> => {
+async function getMostRecentAuctions(realm: string, page: number, size: number): Promise<AuctionsResponse> {
   const data = await fetch(`/api/auction-history?realm=${realm}&page=${page}&size=${size}`);
   return data.json();
-};
+}
 
 const initValue: AuctionsResponse = {
   total: 0,
@@ -69,8 +69,10 @@ export function AuctionTable() {
               </TableRow>
             ) : (
               auctions.map((auction) => (
-                <TableRow key={auction.itemString}>
-                  <TableCell align={'center'}>{auction.itemString}</TableCell>
+                <TableRow key={auction.itemString} hover>
+                  <TableCell align={'center'}>
+                    <Link href={`/auctions/${auction.itemString}`}>{auction.itemString}</Link>
+                  </TableCell>
                   <TableCell align={'right'}>
                     <CurrencyText value={auction.marketValue} />
                   </TableCell>
