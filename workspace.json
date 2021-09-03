@@ -191,7 +191,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 }
               ]
             }
@@ -230,7 +230,7 @@
           "options": {
             "commands": [
               "rm -rf ./dist/apps/bootybay-front",
-              "nx build bootybay-front",
+              "nx run bootybay-front:build:production",
               "docker build -f ./apps/bootybay-front/deploy/Dockerfile -t registry.ucandoit.io/bootybay-front .",
               "docker push registry.ucandoit.io/bootybay-front:latest"
             ],
