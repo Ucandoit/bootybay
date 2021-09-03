@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { AnyKeys, Model } from 'mongoose';
-import { Auction, AuctionDocument } from './schema/auction.schema';
+import { AnyKeys, FilterQuery, Model } from 'mongoose';
+import { Auction, AuctionDocument, SortableKey } from './schema/auction.schema';
 
 @Injectable()
 export class AuctionRepository {
   constructor(@InjectModel(Auction.name) private auctionModel: Model<AuctionDocument>) {}
+
+  find(
+    query: FilterQuery<AuctionDocument>,
+    sortOrder: Partial<{ [key in SortableKey]: 1 | -1 }>
+  ): Promise<AuctionDocument[]> {
+    return this.auctionModel.find(query).sort(sortOrder).exec();
+  }
   async create(createEntityData: AnyKeys<unknown>): Promise<AuctionDocument> {
     return this.auctionModel.create(createEntityData);
   }

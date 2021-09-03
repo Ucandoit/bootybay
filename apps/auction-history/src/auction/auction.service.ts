@@ -37,4 +37,24 @@ export class AuctionService {
       auctions,
     };
   }
+
+  /**
+   * Get Auction histories after a given timestamp, filtered by realm and itemString
+   */
+  getAuctionHistories(
+    itemString: string,
+    realm: string,
+    timestamp: number
+  ): Promise<Array<RealmAuction | RegionalAuction>> {
+    return this.auctionRepository.find(
+      {
+        itemString,
+        realm,
+        timestamp: {
+          $gt: timestamp,
+        },
+      },
+      { timestamp: 1 }
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 export type AuctionDocument = Auction & Document;
+export type SortableKey = keyof Auction;
 
 @Schema({ collection: 'auctions' })
 export class Auction {
