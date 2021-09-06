@@ -28,7 +28,7 @@ export interface AuctionsResponse {
 }
 
 async function getMostRecentAuctions(realm: string, page: number, size: number): Promise<AuctionsResponse> {
-  const data = await fetch(`/api/auction-history?realm=${realm}&page=${page}&size=${size}`);
+  const data = await fetch(`/api/auction-history/realtime?realm=${realm}&page=${page}&size=${size}`);
   return data.json();
 }
 

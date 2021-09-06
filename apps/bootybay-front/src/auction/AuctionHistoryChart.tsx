@@ -18,7 +18,7 @@ const defaultTimestamp = dayjs().subtract(defaultRange, 'day').unix();
 const emptyArray: AuctionHistory[] = [];
 
 async function getAuctionHistories(itemString: string, realm: string, timestamp: number): Promise<AuctionHistory[]> {
-  const data = await fetch(`/api/auction-history/${itemString}?realm=${realm}&timestamp=${timestamp}`);
+  const data = await fetch(`/api/auction-history/historical/${itemString}?realm=${realm}&timestamp=${timestamp}`);
   return data.json();
 }
 interface AuctionHistoryChartProps {
