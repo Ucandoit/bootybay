@@ -18,5 +18,3 @@ export interface RealmAuction extends BaseAuction {
   historical: number;
   numAuctions: number;
 }
-
-export type CreateAuctionDto = RegionalAuction | RealmAuction | RegionalAuction[] | RealmAuction[];

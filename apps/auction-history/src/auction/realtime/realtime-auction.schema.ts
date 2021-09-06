@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-export type AuctionDocument = Auction & Document;
-export type SortableKey = keyof Auction;
+export type RealtimeAuctionDocument = RealtimeAuction & Document;
 
-@Schema({ collection: 'auctions' })
-export class Auction {
+export type RealtimeAuctionSortableKey = keyof RealtimeAuction;
+
+@Schema({ collection: 'realtime-auctions' })
+export class RealtimeAuction {
   @Prop({ required: true })
   _id: string;
 
@@ -44,4 +45,4 @@ export class Auction {
   @Prop()
   regionSalePercent: number;
 }
-export const AuctionSchema = SchemaFactory.createForClass(Auction);
+export const RealtimeAuctionSchema = SchemaFactory.createForClass(RealtimeAuction);

@@ -1,13 +1,28 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuctionController } from './auction.controller';
-import { AuctionRepository } from './auction.repository';
-import { AuctionService } from './auction.service';
-import { Auction, AuctionSchema } from './schema/auction.schema';
+import {
+  HistoricalAuction,
+  HistoricalAuctionController,
+  HistoricalAuctionRepository,
+  HistoricalAuctionSchema,
+  HistoricalAuctionService,
+} from './historical';
+import {
+  RealtimeAuction,
+  RealtimeAuctionController,
+  RealtimeAuctionRepository,
+  RealtimeAuctionSchema,
+  RealtimeAuctionService,
+} from './realtime';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Auction.name, schema: AuctionSchema }])],
-  controllers: [AuctionController],
-  providers: [AuctionService, AuctionRepository],
+  imports: [
+    MongooseModule.forFeature([
+      { name: HistoricalAuction.name, schema: HistoricalAuctionSchema },
+      { name: RealtimeAuction.name, schema: RealtimeAuctionSchema },
+    ]),
+  ],
+  controllers: [HistoricalAuctionController, RealtimeAuctionController],
+  providers: [HistoricalAuctionService, RealtimeAuctionService, HistoricalAuctionRepository, RealtimeAuctionRepository],
 })
 export class AuctionModule {}

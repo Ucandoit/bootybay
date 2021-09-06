@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if body is an empty array 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" must contain at least 1 items",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if body is not an array 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"value\\" must be an array",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if historical is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].historical\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if itemId is not a string 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].itemString\\" must be a string",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if marketValue is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].marketValue\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if minBuyout is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].minBuyout\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if numAuctions is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].numAuctions\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if realm is not a string 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].realm\\" must be a string",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if regionHistorical is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].regionHistorical\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if regionMarketValue is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].regionMarketValue\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if regionSale is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].regionSale\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if regionSalePercent is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].regionSalePercent\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if regionSoldPerDay is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number. \\"[0].regionSoldPerDay\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if required itemId is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].itemString\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if required realm is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].realm\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if required timestamp is missing 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" is required",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests POST /historical request with invalid request body should return 400 if timestamp is not a number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"[0].timestamp\\" must be a number",
+  "statusCode": 400,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body should return 201 with realm auction array 1`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-mograine-horde-1627580614000",
+  "historical": 1,
+  "itemString": "1",
+  "marketValue": 1.2,
+  "minBuyout": 1.5,
+  "numAuctions": 5,
+  "realm": "bcc-eu-mograine-horde",
+  "timestamp": 1627580614000,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body should return 201 with realm auction array 2`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-mograine-horde-1627580614000",
+  "historical": 1,
+  "itemString": "1",
+  "marketValue": 1.2,
+  "minBuyout": 1.5,
+  "numAuctions": 5,
+  "realm": "bcc-eu-mograine-horde",
+  "timestamp": 1627580614000,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body should return 201 with regional auction array 1`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-regional-1627580614000",
+  "itemString": "1",
+  "realm": "bcc-eu-regional",
+  "regionHistorical": 1.5,
+  "regionMarketValue": 1.2,
+  "regionSale": 1,
+  "regionSalePercent": 0.2,
+  "regionSoldPerDay": 5,
+  "timestamp": 1627580614000,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body should return 201 with regional auction array 2`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-regional-1627580614000",
+  "itemString": "1",
+  "realm": "bcc-eu-regional",
+  "regionHistorical": 1.5,
+  "regionMarketValue": 1.2,
+  "regionSale": 1,
+  "regionSalePercent": 0.2,
+  "regionSoldPerDay": 5,
+  "timestamp": 1627580614000,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body should return 500 if auction history already exists 1`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-regional-1627580614000",
+  "itemString": "1",
+  "realm": "bcc-eu-regional",
+  "regionHistorical": 1.5,
+  "regionMarketValue": 1.2,
+  "regionSale": 1,
+  "regionSalePercent": 0.2,
+  "regionSoldPerDay": 5,
+  "timestamp": 1627580614000,
+}
+`;
+
+exports[`Auction e2e tests request with valid request body unknown properties should be ignored 1`] = `
+Object {
+  "__v": 0,
+  "_id": "1-bcc-eu-regional-1627580614000",
+  "itemString": "1",
+  "realm": "bcc-eu-regional",
+  "regionHistorical": 1.5,
+  "regionMarketValue": 1.2,
+  "regionSale": 1,
+  "regionSalePercent": 0.2,
+  "regionSoldPerDay": 5,
+  "timestamp": 1627580614000,
+}
+`;

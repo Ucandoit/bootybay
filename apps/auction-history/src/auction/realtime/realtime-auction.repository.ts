@@ -1,24 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AnyKeys, FilterQuery, Model } from 'mongoose';
-import { Auction, AuctionDocument, SortableKey } from './schema/auction.schema';
+import { RealtimeAuction, RealtimeAuctionDocument, RealtimeAuctionSortableKey } from './realtime-auction.schema';
 
 @Injectable()
-export class AuctionRepository {
-  constructor(@InjectModel(Auction.name) private auctionModel: Model<AuctionDocument>) {}
+export class RealtimeAuctionRepository {
+  private readonly logger = new Logger(RealtimeAuctionRepository.name);
+  constructor(@InjectModel(RealtimeAuction.name) private auctionModel: Model<RealtimeAuctionDocument>) {}
 
   find(
-    query: FilterQuery<AuctionDocument>,
-    sortOrder: Partial<{ [key in SortableKey]: 1 | -1 }>
-  ): Promise<AuctionDocument[]> {
-    return this.auctionModel.find(query).sort(sortOrder).exec();
-  }
-  async create(createEntityData: AnyKeys<unknown>): Promise<AuctionDocument> {
-    return this.auctionModel.create(createEntityData);
+    query: FilterQuery<RealtimeAuctionDocument>,
+    sortOrder: Partial<{ [key in RealtimeAuctionSortableKey]: 1 | -1 }>,
+    limit: number
+  ): Promise<RealtimeAuctionDocument[]> {
+    return this.auctionModel.find(query).sort(sortOrder).limit(limit).exec();
   }
 
-  async createMany(createEntityDatas: Array<AnyKeys<unknown>>): Promise<AuctionDocument[]> {
+  async createMany(createEntityDatas: Array<AnyKeys<unknown>>): Promise<RealtimeAuctionDocument[]> {
     return this.auctionModel.insertMany(createEntityDatas);
+  }
+
+  async deleteMany(query: FilterQuery<RealtimeAuctionDocument>): Promise<void> {
+    const deleteResult = await this.auctionModel.deleteMany(query).exec();
+    if (deleteResult.deletedCount > 0) {
+      this.logger.log(`${deleteResult.deletedCount} documents deleted in realtime-auctions.`);
+    } else {
+      this.logger.warn('No document deleted in realtime-auctions.');
+    }
   }
 
   async findMostRecentByRealm(
@@ -26,7 +34,7 @@ export class AuctionRepository {
     page: number,
     size: number,
     sort = 'regionSoldPerDay'
-  ): Promise<Array<AuctionDocument>> {
+  ): Promise<Array<RealtimeAuctionDocument>> {
     const realms = new Set(['bcc-eu']);
     realms.add(realm);
 
@@ -43,7 +51,7 @@ export class AuctionRepository {
     ];
 
     return await this.auctionModel
-      .aggregate<AuctionDocument>()
+      .aggregate<RealtimeAuctionDocument>()
       // stage 1: filter by realms (target realm + regional)
       .match({
         realm: {
