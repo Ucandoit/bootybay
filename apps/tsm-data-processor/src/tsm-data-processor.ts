@@ -35,8 +35,9 @@ export default class TsmDataProcessor {
             return chunks;
           }, []);
           for await (const auctionChunk of auctionChunks) {
-            await axios.post(this.config.auctionHistoryUrl, auctionChunk);
+            await axios.post(`${this.config.auctionHistoryUrl}/historical`, auctionChunk);
           }
+          await axios.delete(`${this.config.auctionHistoryUrl}/realtime?realm=${auctions[0].realm}`);
           this.logger.info('Move file %s to archive folder.', file);
           renameSync(join(this.config.rootFolder, file), join(this.config.archiveFolder, file));
         } catch (err) {
