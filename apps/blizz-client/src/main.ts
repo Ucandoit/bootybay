@@ -15,7 +15,8 @@ configure({
 const update = async () => {
   const config = load(readFileSync(resolve(__dirname, `config/application.yaml`), 'utf-8')) as BlizzClientConfig;
   const blizzClient = new BlizzClient(config);
-  await blizzClient.updateRealms();
+  // await blizzClient.updateRealms();
+  await blizzClient.updateItems();
 };
 
 update();
