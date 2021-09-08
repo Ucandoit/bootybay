@@ -56,4 +56,8 @@ export class HistoricalAuctionService {
       { timestamp: 1 }
     );
   }
+
+  getDistinctItemString() {
+    return this.historicalAuctionRepository.getDistinctItemString();
+  }
 }

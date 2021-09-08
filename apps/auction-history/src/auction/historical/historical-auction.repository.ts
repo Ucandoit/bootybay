@@ -21,4 +21,8 @@ export class HistoricalAuctionRepository {
   async createMany(createEntityDatas: Array<AnyKeys<unknown>>): Promise<HistoricalAuctionDocument[]> {
     return this.auctionModel.insertMany(createEntityDatas);
   }
+
+  async getDistinctItemString(): Promise<string[]> {
+    return this.auctionModel.distinct('itemString');
+  }
 }

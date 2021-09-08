@@ -14,6 +14,11 @@ export class HistoricalAuctionController {
     await this.historicalAuctionsService.createAuctions(createAuctionsDto);
   }
 
+  @Get('/distinct')
+  async getDistinctItemString() {
+    return await this.historicalAuctionsService.getDistinctItemString();
+  }
+
   @Get('/:itemString')
   async getAuction(
     @Param('itemString') itemString: string,
