@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RealmModule } from './realm/realm.module';
 import configuration from './config/configuration';
+import { ItemModule } from './item/item.module';
+import { RealmModule } from './realm/realm.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     RealmModule,
+    ItemModule,
   ],
 })
 export class AppModule {}
