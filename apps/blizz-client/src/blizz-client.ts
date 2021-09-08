@@ -1,6 +1,10 @@
 import axios from 'axios';
 import * as FormData from 'form-data';
+import * as https from 'https';
 import { getLogger } from 'log4js';
+
+axios.defaults.timeout = 30000;
+axios.defaults.httpsAgent = new https.Agent({ keepAlive: true });
 
 const propsToIgnore = ['_links', 'preview_item', 'media:key', 'item_class:key', 'item_subclass:key'];
 
