@@ -7,4 +7,7 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD || 'mongodb',
     name: process.env.DATABASE_NAME || 'mongodb',
   },
+  blizzData: {
+    url: process.env.BLIZZ_DATA_URL || 'http://localhost:8001',
+  },
 });

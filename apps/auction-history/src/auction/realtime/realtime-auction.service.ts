@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { BlizzardService } from '../../blizzard/blizzard.service';
 import { RealtimeAuctionRepository } from './realtime-auction.repository';
 import { RealtimeAuctionsRequestDto, RealtimeAuctionsResponseDto } from './realtime-auctions.dto';
 
 @Injectable()
 export class RealtimeAuctionService {
-  constructor(private readonly auctionRepository: RealtimeAuctionRepository) {}
+  constructor(
+    private readonly blizzardService: BlizzardService,
+    private readonly auctionRepository: RealtimeAuctionRepository
+  ) {}
+
   async getAuctionByRealm({
     realm,
     page = 0,
@@ -12,11 +17,18 @@ export class RealtimeAuctionService {
   }: RealtimeAuctionsRequestDto): Promise<RealtimeAuctionsResponseDto> {
     const total = await this.auctionRepository.countMostRecentByRealm(realm);
     const auctions = await this.auctionRepository.findMostRecentByRealm(realm, page, size);
+    const items = await this.blizzardService.getItems(auctions.map((auction) => auction.itemString));
     return {
       page,
       size,
       total,
-      auctions,
+      auctions: auctions.map((auction) => {
+        const itemFound = items.find((item) => item.id.toString() === auction.itemString);
+        return {
+          ...auction,
+          name: itemFound?.name,
+        };
+      }),
     };
   }
 

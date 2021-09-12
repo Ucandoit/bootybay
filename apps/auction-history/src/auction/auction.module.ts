@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BlizzardModule } from '../blizzard/blizzard.module';
 import {
   HistoricalAuction,
   HistoricalAuctionController,
@@ -21,6 +22,7 @@ import {
       { name: HistoricalAuction.name, schema: HistoricalAuctionSchema },
       { name: RealtimeAuction.name, schema: RealtimeAuctionSchema },
     ]),
+    BlizzardModule,
   ],
   controllers: [HistoricalAuctionController, RealtimeAuctionController],
   providers: [HistoricalAuctionService, RealtimeAuctionService, HistoricalAuctionRepository, RealtimeAuctionRepository],
