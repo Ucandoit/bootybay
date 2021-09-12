@@ -37,6 +37,9 @@
       "tags": [],
       "implicitDependencies": ["bootybay-front"]
     },
+    "common-interfaces": {
+      "tags": []
+    },
     "tsm-data-collector": {
       "tags": []
     },

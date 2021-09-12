@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/apps/blizz-data',
     '<rootDir>/apps/blizz-client',
     '<rootDir>/apps/bootybay-front',
+    '<rootDir>/libs/common-interfaces',
   ],
 };

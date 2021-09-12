@@ -265,6 +265,27 @@
         }
       }
     },
+    "common-interfaces": {
+      "root": "libs/common-interfaces",
+      "sourceRoot": "libs/common-interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/common-interfaces/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/common-interfaces"],
+          "options": {
+            "jestConfig": "libs/common-interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "tsm-data-collector": {
       "root": "apps/tsm-data-collector",
       "sourceRoot": "apps/tsm-data-collector",
