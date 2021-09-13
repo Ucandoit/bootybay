@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blizz-data
+  namespace: bootybay
+  labels:
+    app: blizz-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blizz-data
+  template:
+    metadata:
+      labels:
+        app: blizz-data
+    spec:
+      imagePullSecrets:
+        - name: docker-registry
+      volumes:
+        - name: blizz-data-env
+          configMap:
+            name: blizz-data-config
+      containers:
+        - name: blizz-data
+          image: registry.ucandoit.io/blizz-data:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http-entry
+              protocol: TCP
+              containerPort: 8000
+          volumeMounts:
+            - name: blizz-data-env
+              mountPath: /app/.env
+              subPath: .env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blizz-data
+  namespace: bootybay
+  labels:
+    app: blizz-data
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-entry
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+  selector:
+    app: blizz-data

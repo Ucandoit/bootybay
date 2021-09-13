@@ -149,6 +149,18 @@
             "jestConfig": "apps/blizz-data/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "rm -rf ./dist/apps/blizz-data",
+              "nx run blizz-data:build:production",
+              "docker build -f ./apps/blizz-data/deploy/Dockerfile -t registry.ucandoit.io/blizz-data .",
+              "docker push registry.ucandoit.io/blizz-data:latest"
+            ],
+            "parallel": false
+          }
         }
       },
       "tags": []
