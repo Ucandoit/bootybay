@@ -15,6 +15,7 @@ export interface AuctionsResponse {
   total: number;
   auctions: Array<{
     itemString: string;
+    name?: string;
     regionMarketValue: number;
     regionHistorical: number;
     regionSale: number;
@@ -71,7 +72,7 @@ export function AuctionTable() {
               auctions.map((auction) => (
                 <TableRow key={auction.itemString} hover>
                   <TableCell align={'center'}>
-                    <Link href={`/auctions/${auction.itemString}`}>{auction.itemString}</Link>
+                    <Link href={`/auctions/${auction.itemString}`}>{auction.name ?? auction.itemString}</Link>
                   </TableCell>
                   <TableCell align={'right'}>
                     <CurrencyText value={auction.marketValue} />

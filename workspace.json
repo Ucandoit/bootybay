@@ -48,7 +48,7 @@
           "options": {
             "commands": [
               "rm -rf ./dist/apps/auction-history",
-              "nx build auction-history",
+              "nx run auction-history:build:production",
               "docker build -f ./apps/auction-history/deploy/Dockerfile -t registry.ucandoit.io/auction-history .",
               "docker push registry.ucandoit.io/auction-history:latest"
             ],
