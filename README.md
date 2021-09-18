@@ -16,12 +16,12 @@ The data sources will be from [TSM](https://www.tradeskillmaster.com/) or the [B
 
 I also consider it a very good place to try out and practice new technologies. Thus, its architecture design is more of what I want to do than a real-life project. The choices that I made may not be the most appropriate ones.
 
-This project was generated using [Nx](https://nx.dev). It contains:
+This project is a monorepo generated using [Nx](https://nx.dev). It contains:
 
-- a frontend project using React and Material UI
-- several backend web services based on micro-service architecture, using NestJS and Mongodb
-- some jobs (one-shot or scheculed) in Node.js to supply data.
+- a frontend project using **React** and **Material UI**
+- several backend web services based on micro-service architecture, using **NestJS** and **Mongodb**
+- some jobs (one-shot or scheculed) in **Node.js** to supply data.
 
 All the modules are built into docker images and deployed into a k3d cluster.
 
-//TODO: add a graph to describe the whole architecture
+![architecture](./docs/bootybay.png)
