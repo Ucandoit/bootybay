@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export interface AuctionHistory {
   itemString: string;
   realm: string;
@@ -60,7 +62,11 @@ export function toChart(auctionHistories: AuctionHistory[]) {
     return {};
   }
   const xAxis = {
-    data: auctionHistories.map((auction) => auction.timestamp),
+    data: auctionHistories.map((auction) => dayjs(auction.timestamp * 1000).format('YYYY-MM-DD HH:mm')),
+    axisLabel: {
+      rotate: 30,
+      margin: 15,
+    },
   };
   const props = auctionHistories[0].realm === 'bcc-eu' ? regionProps : realmProps;
   const series = props.map((prop) => ({
@@ -71,7 +77,13 @@ export function toChart(auctionHistories: AuctionHistory[]) {
   }));
   return {
     xAxis,
-    yAxis: {},
+    yAxis: {
+      axisLabel: {
+        formatter: function (value: number) {
+          return value / 100;
+        },
+      },
+    },
     legend: {},
     series,
   };
