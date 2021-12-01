@@ -1,5 +1,10 @@
-import { Box, Link } from '@mui/material';
+import { Link } from '@mui/material';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,6 +12,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { useState } from 'react';
 import useAsyncFunction from '../commons/helper/useAsyncFunction';
 import usePagination from '../commons/table/usePagination';
 import CurrencyText from './MoneyText';
@@ -33,21 +39,44 @@ async function getMostRecentAuctions(realm: string, page: number, size: number):
   return data.json();
 }
 
+const realms = [
+  {
+    id: 'bcc-eu-mograine-horde',
+    label: 'Mograine Horde (EU TBC)',
+  },
+  {
+    id: 'bcc-eu-firemaw-horde',
+    label: 'Firemaw Horde (EU TBC)',
+  },
+];
+
 const initValue: AuctionsResponse = {
   total: 0,
   auctions: [],
 };
 export function AuctionTable() {
+  const [realm, setRealm] = useState('bcc-eu-mograine-horde');
   const { page, size, changePage, changeRowsPerPage } = usePagination();
   const {
     value: { total, auctions },
     isPending,
-  } = useAsyncFunction<AuctionsResponse>(getMostRecentAuctions, initValue, 'bcc-eu-mograine-horde', page, size);
+  } = useAsyncFunction<AuctionsResponse>(getMostRecentAuctions, initValue, realm, page, size);
+
   return (
     <>
       <TableContainer component={Paper} sx={{ width: '100%' }}>
-        {/* TODO: add filters */}
-        <Box>Todo: add filters</Box>
+        <Box>
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="realm-filter">Select a realm</InputLabel>
+            <Select labelId="realm-filter" value={realm} onChange={(e) => setRealm(e.target.value)}>
+              {realms.map(({ id, label }) => (
+                <MenuItem key={id} value={id}>
+                  {label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
         <Table aria-labelledby="tableTitle">
           <TableHead>
             <TableRow>
